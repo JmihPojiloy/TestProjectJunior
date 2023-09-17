@@ -7,6 +7,8 @@ using ClinicApp.EntityModels;
 using System.Threading;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Windows.Data;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 
 namespace ClinicApp.XamlPages
 {
@@ -50,6 +52,7 @@ namespace ClinicApp.XamlPages
                 Animation(cts.Token);
                 ClinicDataRepository clinicRepo = new ClinicDataRepository();
                 dgPatients.ItemsSource = await clinicRepo.GetPatientCards();
+                
                 //after adding a new request or after modifying one,
                 //we should refresh the DataGrid to see the changes
                 if (tempCard != null)

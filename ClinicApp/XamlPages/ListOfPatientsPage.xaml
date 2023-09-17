@@ -1,15 +1,16 @@
-﻿<Page x:Class="ClinicApp.XamlPages.ListOfPatientsPage"
+﻿    <Page x:Class="ClinicApp.XamlPages.ListOfPatientsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:ClinicApp.XamlPages"
-      xmlns:localModels="clr-namespace:ClinicApp.EntityModels"
+      xmlns:local="clr-namespace:ClinicApp.XamlPages" 
+      xmlns:custom="clr-namespace:ClinicApp.HelperClasses"
       mc:Ignorable="d" 
-      d:DesignHeight="300" Width="1200"
+      d:DesignHeight="300" Width="1260"
       Title="ListOfPatientsPage" Loaded="Page_Loaded" x:Name="page" Background="White">
     <Page.Resources>
         <local:EnumDescriptionConverter x:Key="EnumDescriptionConverter"/>
+        <custom:AgeConverter x:Key="AgeConverter"/>
     </Page.Resources>
     <DockPanel LastChildFill="True" Background="White">
         <ToolBar x:Name="toolBar" DockPanel.Dock="Top" Background="White">
@@ -41,6 +42,7 @@
                     <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="ФИО" Width="200"/>
                     <DataGridTextColumn x:Name="nameAddress" Binding="{Binding Address}" Header="Адрес" Width="385"/>
                     <DataGridTextColumn x:Name="dateOfBirthColumn" Binding="{Binding DateOfBirth, StringFormat=dd.MM.yyyy}" Header="Дата рождения" Width="110"/>
+                    <DataGridTextColumn x:Name="age" Binding="{Binding DateOfBirth, Converter={StaticResource AgeConverter}}" Header="Возраст" Width="60"/>
                     <DataGridTextColumn x:Name="phoneNumberColumn" Binding="{Binding PhoneNumber}" Header="Телефон" Width="125"/>
                     <DataGridTextColumn x:Name="genderColumn" Binding="{Binding Gender, Converter={StaticResource EnumDescriptionConverter}}" Header="Пол" Width="80"/>
                     <DataGridTemplateColumn Header="Редактировать">
@@ -71,7 +73,7 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="requestDateColumn" Binding="{Binding DateOfRequest, StringFormat=dd.MM.yyyy}" Header="Дата обращения" Width="175"/>
                     <DataGridTextColumn x:Name="requestTypeColumn" Binding="{Binding RequestType, Converter={StaticResource EnumDescriptionConverter}}" Header="Тип обращения" Width="190" />
-                    <DataGridTextColumn x:Name="зurposeColumn" Binding="{Binding Purpose}" Header="Цель" Width="565" />
+                    <DataGridTextColumn x:Name="purposeColumn" Binding="{Binding Purpose}" Header="Цель" Width="565" />
                     <DataGridTemplateColumn Header="Редактировать" Width="125">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
